@@ -1,0 +1,327 @@
+\documentclass{article}
+\usepackage{graphicx,fancyhdr,amsmath,amssymb,amsthm,subfig,url,hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{algorithm, algorithmicx, algpseudocode, graphicx, physics}
+\usepackage{afterpage}
+
+%----------------------- Macros and Definitions --------------------------
+
+%%% FILL THIS OUT
+\newcommand{\studentname}{Francis Zhang}
+\newcommand{\suid}{xz3279}
+\newcommand{\exerciseset}{Homework 1}
+%%% END
+
+
+
+\renewcommand{\theenumi}{\bf \Alph{enumi}}
+
+
+\theoremstyle{plain}
+
+
+\fancypagestyle{plain}{}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\sffamily\bfseries\large Columbia University}
+\fancyhead[LO,RE]{\sffamily\bfseries\large CSORE 4231 ANALYSIS OF ALGORITHMS I}
+\fancyfoot[LO,RE]{\sffamily\bfseries\large \studentname: \suid}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\graphicspath{{figures/}}
+
+%-------------------------------- Title ----------------------------------
+
+\title{CSORE 4231 ANALYSIS OF ALGORITHMS I \exerciseset}
+\author{\studentname  \qquad UNI:  \suid}
+
+%--------------------------------- Text ----------------------------------
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1}
+\textbf{Ordering by asymptotic growth rates.}
+CLRS 3-3.a\\
+Rank the following functions by order of growth; that is, find an arrangement $g1, g2,..., g30$ of the functions satisfying $g1 = \Omega(g2), g2 = \Omega(g3),..., g29 = \Omega(g30)$. Partition your list into equivalence classes such that functions $f(n)$ and $g(n)$ are in the same class if and only if $f(n)=\Theta(g(n))$.
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccccc}
+    $\lg(\lg^* n)$ & $2^{\lg^* n}$ & $\sqrt{2}^{\lg n}$ & $n^2$ & $n!$ & $(\lg n)!$\\\\
+    $(\frac{3}{2})^n$ & $n^3$ & $\lg^2 n$ & $\lg(n!)$ & $2^{2^n}$ & $n^{1/\lg n}$\\\\
+    $\ln \ln n$ & $\lg^* n$ & $n \cdot 2^n$ & $n^{\lg \lg n}$ & $\ln n$ & $1$\\\\
+    $2^{\lg n}$ & $(\lg n)^{\lg n}$ & $e^n$ & $4^{\lg n}$ & $(n + 1)!$ & $\sqrt{\lg n}$\\\\
+    $\lg^* (\lg n)$ & $2^{\sqrt{2 \lg n}}$ & $n$ & $2^n$ & $n \lg n$ & $2^{2^{n + 1}}$\\
+  \end{tabular}
+\end{table}
+
+\par
+
+\raggedright \textbf{Solution:}
+
+\begin{enumerate}
+    \item[{}] $g_1(n) = 2^{2^{n+1}}$
+    \item[{}] $g_2(n) = 2^{2^{n}}$
+    \item[{}] $g_3(n) = (n+1)!$
+    \item[{}] $g_4(n) = n!$
+    \item[{}] $g_5(n) = e^n$
+    \item[{}] $g_6(n) = n2^n$
+    \item[{}] $g_7(n) = 2^n$
+    \item[{}] $g_8(n) = (\frac{3}{2})^n$
+    \item[{}] $g_9(n) = (\lg n)^{\lg n}$
+    \item[{}] $g_{10}(n) = n^{\lg \lg n}$
+    \item[{}] $g_{11}(n) = (\lg n)!$
+    \item[{}] $g_{12}(n) = n^3$
+    \item[{}] $g_{13}(n) = n^2$
+    \item[{}] $g_{14}(n) = 4^{\lg n}$
+    \item[{}] $g_{15}(n) = n \lg n$
+    \item[{}] $g_{16}(n) = \lg (n!)$
+    \item[{}] $g_{17}(n) = 2^{\lg n}$
+    \item[{}] $g_{18}(n) = n$
+    \item[{}] $g_{19}(n) = (\sqrt{2})^{\lg n}$
+    \item[{}] $g_{20}(n) = 2^{\sqrt{2 \lg n}}$
+    \item[{}] $g_{21}(n) = \lg ^ 2 n$
+    \item[{}] $g_{22}(n) = \ln n$
+    \item[{}] $g_{23}(n) = \sqrt{\lg n}$
+    \item[{}] $g_{24}(n) = \ln \ln n$
+    \item[{}] $g_{25}(n) = 2^{\lg ^ * n}$
+    \item[{}] $g_{26}(n) = \lg ^ * n$
+    \item[{}] $g_{27}(n) = \lg ^ * (\lg n)$
+    \item[{}] $g_{28}(n) = \lg (\lg ^ * n)$
+    \item[{}] $g_{29}(n) = n^{1/{\lg n}}$
+    \item[{}] $g_{30}(n) = 1$
+\end{enumerate}
+Where $g_9(n) = (\lg n)^{\lg n}$ and $g_{10}(n) = n^{\lg \lg n}$, $g_{13}(n) = n^2$ and $g_{14}(n) = 4^{\lg n}$, $g_{15}(n) = n \lg n$ and $g{16}(n) = \lg (n!)$, $g_{17}(n) = 2^{\lg n}$ and $g_{18}(n) = n$, and $g_{29}(n) = n^{1/{\lg n}}$ and $g_{30}(n) = 1$ satisfies $f(n)=\Theta(g(n))$.\\
+For $g_9(n) = \Theta(g_{10}(n))$, since $a^{log_b c} = c^{log_b a}$.\\
+For $g_{13}(n) = \Theta(g_{14}(n))$, since $4^{\lg n} = n$.\\
+For $g_{15}(n) = \Theta(g_{16}(n))$, since $\lg(n!) =  {\textstyle \sum_{i=1}^{n}\lg i}$ where $\underbrace{\lg \frac{n}{2} + ...+ \lg \frac{n}{2}}_{\# \hspace{0.3em} of \hspace{0.3em} n \hspace{0.3em} is \hspace{0.3em} \frac{n}{2}} \leq \lg \frac{n}{2} + \lg(\frac{n}{2} + 1) +...+ \lg n \leq \lg n + \lg(n - 1) +...+ \lg 1 \leq \underbrace{\lg n + ...+ \lg n}_{\# \hspace{0.3em} of \hspace{0.3em} n \hspace{0.3em} is \hspace{0.3em} n}$. As $\lg {\frac{n}{2}}^{\frac{n}{2}} = \frac{n}{2} \lg \frac{n}{2} = \frac{n}{2} (\lg n - 1) = \frac{n}{2} \lg n - \frac{n}{2} \geq \frac{n}{4} n \lg n$\\
+For $g_{17}(n) = \Theta(g_{18}(n))$, since $2^{\lg n} = n$.
+For $g_{29}(n) = \Theta(g_{30}(n))$, since $n^{1/{\lg n}} = n^{\log_n 2} = 2 = \Theta(1)$.
+
+\section*{Problem 2}
+\textbf{Big-O.}
+CLRS 3-4 b, d, e, g\\
+Let $f(n)$ and $g(n)$ be asymptotically positive functions. Prove or disprove each of the following conjectures.\\
+\textbf{b.} $f(n) + g(n) = \Theta(\min(f(n), g(n)))$.\\
+\textbf{d.} $f(n) = O(g(n))$ implies $2^{f(n)} = O(2^{g(n)})$.\\
+\textbf{e.} $f(n) = O((f(n))^2)$.\\
+\textbf{g.} $f(n) = \Theta(f(n/2))$.\\
+
+\textbf{\\Solution:\\}
+\textbf{b.} \textbf{Disprove:} Pick $f(n) = n$, $g(n) = 1$. When testing $f(n) + g(n) = O(\min(f(n), g(n)))$. Assume $\exists c > 0, N >0$, $\forall n > N$ we can have $n + 1 \leq c$ and $n \leq c - 1$. However, as $n$ has an upper bound now, this does not satisfy $\forall n > N$ contradicts the assumption.\\
+\textbf{d.} \textbf{Disprove:} $f(n) = O(g(n))$ directly implies $f(n) \leq c \cdot g(n) (\exists c > 0, N >0, \forall n > N)$. And $f(n) \leq c \cdot g(n)$ implies $2^{f(n)} \leq 2^{c \cdot g(n)}$. To prove $2^{f(n)} = O(2^{g(n)})$, we need $2^{f(n)} \leq c' \cdot 2^{g(n)}$. Now we can do some comparison between $2^{c \cdot g(n)}$ and $c' \cdot 2^{g(n)}$. Let $f(n) = 4n, g(n) = 3n, and c = 1.5$, we have $4n \leq 1.5 \cdot 3n$ and $2^{4n} \leq 2^{1.5 \cdot 3n}$. To make it easy, let $c' = c = 1.5$. We cannot say that $2^{4n} \leq  1.5 \cdot 2^{3n}$ $\forall n > N for some c, N$ as $n'$s upper bound is $log_2 1.5$.\\ 
+\textbf{e.} \textbf{Disprove:} Let $f(n) = \frac{1}{n}$. We cannot say that $\frac{1}{n} \leq c \cdot (\frac{1}{n})^2$. As $n \leq c$, $n$ has an upper bound now.\\
+\textbf{g.} \textbf{Disprove:} Assume $f(n) = O(f(n/2))$. Let $f(n) = 2^n$. Then $2^n \leq c \cdot 2^{\frac{n}{2}}$. That is $n \leq 2 \lg c$, $n$ has an upper bound. Hence $f(n) \ne O(f(n/2))$, and $f(n) \ne \Theta(f(n/2))$.
+
+\section*{Problem 3}
+\textbf{Horner's Rule.} CLRS 2-3\\
+The following code fragment implements Horner's rule for evaluating a polynomial 
+\begin{align*}
+P(x)& = \sum_{k=0}^{n}a_kx^k \\
+& = a_0 + x(a_1 + x(a_2 + ... + x(a_{n - 1} + xa_n)...)),
+\end{align*}
+given the coefficients $a_0, a_1,..., a_n$ and a value for $x:$
+\begin{enumerate}
+    \item[1] $y = 0$
+    \item[2] \textbf{for} $i = n$ \textbf{downto} $0$
+    \item[3] \quad \quad $y = a_i + x \cdot y$
+\end{enumerate}
+\begin{enumerate}
+    \item[a.] In terms of $\Theta$-notation, what is the running time of this code fragment for Horner's rule?
+    \item[b.] Write pseudocode to implement the naive polynomial-evaluation algorithm that computes each term of the polynomial from scratch. What is the running time of this algorithm? How does it compare to Horner's rule?
+    \item[c.] Consider the following loop invariant:\\At the start of each iteration of the \textbf{for} loop of lines 2-3,
+    \begin{align*}
+        y = \sum_{k=0}^{n-(i+1)}a_{k+i+1}x^k.
+    \end{align*}
+    Interpret a summation with no terms as equaling 0. Following the structure of the loop invariant proof presented in this chapter, use this loop invariant to show that, at termination, ${\textstyle \sum_{k=0}^{n}}a_kx^k $.
+    \item[d.] Conclude by arguing that the given code fragment correctly evaluates a polynomial characterized by the coefficients $a_0, a_1,..., a_n$.
+\end{enumerate}
+\textbf{\\Solution:\\}
+\textbf{a.} $n \cdot \Theta(1) = \Theta(n)$.\\
+\textbf{b.\\} 
+\begin{enumerate}
+    \item[1] $y = 0$
+    \item[2] \textbf{for} $i = n$ \textbf{downto} $0$
+    \item[3] \quad \quad $z_i = 1$
+    \item[4] \quad \quad \textbf{for} $j = i$ \textbf{downto} $1$
+    \item[5] \quad \quad \quad \quad $z_i = z_i \cdot x$
+    \item[6] \quad \quad $y = a_i z_i + y$
+\end{enumerate}
+The runing time is $\Theta(n^2)$, this is slower to Horner's rule.\\
+\textbf{c.\\}
+\textbf{Invariant:} P returns the summation of simplify power series of given $a_0,..., a_n$.\\
+\textbf{Initialization:} $y = 0$.\\
+\textbf{Maintenance:} $y = a_i +x\sum_{k=0}^{n-(i+1)} a_{k+i+1}x^k=a_ix^0 +\sum_{k=0}^{n-(i+1)} a_{k+i+1}x^{k+1}=\sum_{k=-1}^{n-(i+1)} a_{k+i+1}x^{k+1}=\sum_{k=0}^{n-i} a_{k+i}x^k$.\\
+\textbf{Termination:} $i = 0, y = \sum_{k=0}^{n-i} a_{k+i}x^k$.\\
+\textbf{d.} We can conclude from the termination above that the given code correctly evaluates a  polynomial characterized by the coefficients $a_0, a_1,..., a_n$.\\
+
+\section*{Problem 4}
+\textbf{Recurrences.} Give asymptotic upper bounds on the following recurrences. If the master method applies, you can use that. If not, draw a recursion tree and come up with an upper bound.
+\begin{enumerate}
+    \item[(a)] $T(n) = 6T(n/9) + n$
+    \item[(b)] $T(n) = 3T(n/3) + n^{1.5}$
+    \item[(c)] $T(n) = T(n - 2) + 1/n$
+    \item[(d)] $T(n) = 4T(n/2) + n^2 \log n$
+    \item[(e)] $T(n) = \sqrt{n}T(\sqrt{n}) + n$
+\end{enumerate}
+\textbf{\\Solution:\\}
+\textbf{Master theorem:}
+\[
+T(n) = aT\left(\frac{n}{b}\right) + f(n)
+\]
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccccc}
+    Cases & $f(n)$ & & $n^{\log_b(a)}$ & \\
+    1 & & $\leq$ & & $\Rightarrow \Theta(n^{\log_b(a)})$ \\
+    2 & & = & &$\Rightarrow \Theta(n^{\log_b(a)} \log n)$ \\
+    3 & & $\geq$ & & $\Rightarrow \Theta(f(n))$ \\
+  \end{tabular}
+  \caption{Master theorem}
+  \label{tab:Master-theorem}
+\end{table}
+\textbf{\\a.} Applying Master theorem, $n \geq n^{\log_9 {6}} \Rightarrow$ Case 3 $\Rightarrow \Theta(n)$.\\
+\textbf{\\b.c.d.} $n^{1.5}, \frac{1}{n}, n^2 \log n$ are not polynomials. We draw recursion trees below.\\
+    \begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{1.png}
+    \caption{\textbf{b.} $T(n) = 3T(n/3) + n^{1.5}$}
+    \label{fig:example}
+    \end{figure}
+
+    \begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{2.png}
+    \caption{\textbf{c.} $T(n) = T(n - 2) + 1/n$}
+    \label{fig:example}
+    \end{figure}
+
+    \begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{Notes.png}
+    \caption{\textbf{d.} $T(n) = 4T(n/2) + n^2 \log n$}
+    \label{fig:example}
+    \end{figure}
+\pagebreak
+\textbf{\\e.} We cannot find some integer $a$ and $b$ to use Master theorem here, however we can do some modifications to apply MT.\\
+Let $n = 2^k$, $\sqrt{n} = 2^{k/2}$, then $k = \log n$. The equation becomes:
+\begin{equation}
+T(2^k) = 2^{\frac{k}{2}} T(2^{\frac{k}{2}}) + 2^{k}
+\tag{1}
+\end{equation}
+Dividing (1) by $2^k$, we get:
+\begin{equation}
+\frac{T(2^k)}{2^k} = \frac{T(2^{\frac{k}{2}})}{2^{k/2}} + 1
+\tag{2}
+\end{equation}
+Let $y(k) = \frac{T(2^k)}{2^k}$, we have:
+\begin{equation}
+y(k) = y(\frac{k}{2}) + 1
+\tag{3}
+\end{equation}
+And now we can use MT here. As $1 = k^{\log_2 1}$, it is Case 2. We have $y(k) = \Theta(\log k)$. Substituting $T(n) = 2^k y(k) = 2^{log n} \Theta(\log k) = \Theta(n \log \log n)$.
+
+\section*{Problem 5}
+\textbf{Fun with Arrays.}
+\begin{enumerate}
+    \item[(a)] We are given sorted arrays A and B with n integers each, as well as an integer c. The problem is to determine if there exist indexes $i$, $j$ with $1 \leq i$, $j \leq n$ such that $2A[i]+3B[j] = c$. The output will be either “yes” or “no”. Design and analyze an algorithm for this problem that runs in linear time (i.e., $O(n)$ time) in the worst case.
+    \item[(b)] Now we have one array $A$ of length $n$. The problem is to find three integers $i, j, k$ with $1 \leq i, j, k \leq n$ such that $2A[i] + 3A[j] = A[k]$. The output will be either $i, j, k$ or “no”. Design and analyze an algorithm for this problem that runs in $O(n^2)$ time.
+\end{enumerate}
+\textbf{\\Solution:\\}
+\textbf{a.\\} 
+\begin{enumerate}
+    \item[1] Define the function below as \texttt{FUNARRAY}$(A, B, c)$
+    \item[2] Assume $n \geq 1$. For empty arrays A, B, the answer is no here.
+    \item[3] $i = 1, j = 1$
+    \item[4] \textbf{for} $i, j \leq n$
+    \item[5] \quad \quad \textbf{if} $2A[i] + 3B[j] = c$, output yes.
+    \item[6] \quad \quad \textbf{if} $2A[i] + 3B[j] > c$, output no.
+    \item[7] \quad \quad \textbf{else}:
+    \item[8] \quad \quad \quad \quad \textbf{if} $2A[i] < 3B[j]$, $i = i + 1$.
+    \item[9] \quad \quad \quad \quad \textbf{if} $2A[i] > 3B[j]$, $j = j + 1$.
+    \item[10] \quad \quad \quad \quad \textbf{else}: $i = i + 1$, $j = j + 1$
+    \item[11] \quad \quad \quad \quad \quad \quad \textbf{if} $2A[i+1] + 3B[j] = c$ or $2A[i] + 3B[j+1] = c$, $i = i + 1$ or $j = j + 1$, output yes.
+    \item[12] \quad \quad \quad \quad \quad \quad \textbf{if} $2A[i+1] + 3B[j] > c$ and $2A[i] + 3B[j+1] > c$, output no.
+    \item[13] \quad \quad \quad \quad \quad \quad \textbf{if} $2A[i+1] + 3B[j] > c$ and $2A[i] + 3B[j+1] < c$, $j = j + 1$.
+    \item[14] \quad \quad \quad \quad \quad \quad \textbf{if} $2A[i+1] + 3B[j] < c$ and $2A[i] + 3B[j+1] > c$, $i = i + 1$.
+    \item[15] \quad \quad \quad \quad \quad \quad \textbf{if} $2A[i+1] + 3B[j] < c$ and $2A[i] + 3B[j+1] < c$, $i = i + 1$, $j = j + 1$.
+    \item[16] \textbf{else}: output no.
+\end{enumerate}
+\textbf{\\b.} I'm using the function \texttt{FUNARRAY} from part \textbf{a} here
+\begin{enumerate}
+    \item[1] Assume $n \geq 1$. For empty array A, the answer is no here.
+    \item[2] \textbf{for} $k = n$ \textbf{downto} $1$
+    \item[3] \quad \quad \textbf{if} \texttt{FUNARRAY}$(A, A, A[k])$, output $i, j, k$.
+    \item[4] \quad \quad \textbf{else}: $k = k - 1$.
+    \item[5] \textbf{else}: output no.
+\end{enumerate}
+
+\section*{Problem 6}
+\textbf{Even more fun with arrays and weird collectables.} You are given as input an array $A[1, . . . , n]$, with $n$ entries. Also, you know that this array consists of a series of 0’s followed by a series of 1’s, but you don’t know how many of each there are. Your goal is to find the first 1 in the array. There is a cost associated with checking
+the value of an entry in the array. Each time you check a value and it turns out to be 0, you must pay 1 dollar. If value turns out to be 1, you have to pay 1 “Famous Algorithmist Trading Card (FATC)”. In each of the parts of this question, you will have some number of dollars and some number of FATCs. You must give an algorithm which will return the index of the first (lowest indexed) 1 that works given your resources. For each part, write pseudocode and explain why your algorithm works, given your resources.
+\begin{enumerate}
+    \item[(a)] You have $n$ dollars and $n$ FATC
+    \item[(b)] You have 1 dollars and $n$ FATC
+    \item[(c)] You have $10 \log n$ dollars and $10 \log n$ FATC
+    \item[(d)] You have 2 dollars and $10n^{1/2}$ FATC
+    \item[(e)] You have $k$ dollars and $10kn^{1/k}$ FATC, for some constant $k$
+\end{enumerate}
+\textbf{\\Solution:\\}
+\textbf{a.\\} 
+\begin{enumerate}
+    \item[1] \textbf{for} $i = 1$ \textbf{upto} $n$
+    \item[2] \quad \quad \textbf{if} $A[i] = 1$, return $i$.
+    \item[3] \quad \quad \textbf{else}: $i = i + 1$.
+\end{enumerate}
+As we have n dollars and n FATC, there is no limit to check 0's and 1's 1-by-1. That is from $A[1]$ to $A[n]$ 1-by-1 go through all 0's until the first index of 1.\\
+\textbf{b.\\} 
+\begin{enumerate}
+    \item[1] \textbf{for} $i = n$ \textbf{downto} $1$
+    \item[2] \quad \quad \textbf{if} $A[i] = 0$, return $i + 1$.
+    \item[3] \quad \quad \textbf{else}: $i = i - 1$.
+\end{enumerate}
+As we have 1 dollars and n FATC, there is no limit to check 1's but can only check 0 once. That is from $A[n]$ to $A[1]$ 1-by-1 go through all 1's until the first index of 0. Then the index of first 1 is the last index of 0 plus 1.\\
+\textbf{c.\\} 
+\begin{enumerate}
+    \item[1] $j = 0$, $B = A$
+    \item[2] \textbf{for} $\abs{B} \ne 1$
+    \item[3] \quad \quad \textbf{if} $B[\left \lceil \frac{n}{2} \right \rceil] = 0$, $B = B[\left \lceil \frac{n}{2} \right \rceil + 1,..., n]$, $j = \left \lceil \frac{n}{2} \right \rceil$.
+    \item[4] \quad \quad \textbf{else}: $B = B[1,..., \left \lceil \frac{n}{2} \right \rceil]$, $j = \left \lceil \frac{n}{2} \right \rceil$.
+    \item[5] \textbf{if} $A[j] = 0$, return $j = j + 1$
+    \item[6] \textbf{else}: return $j$.
+\end{enumerate}
+As we have $10\log n$ dollars and $10\log n$ FATC, we just use binary search here. Set the pivot point first. As there cannot be 0's behind any 1's, once the pivot is 0, we just take a look at the part of the array behind that 0. Found a 1 as the pivot, we just check the array before(including that 1). The last steps just illustrate the index of 1. When the updated array has size 1, the second last updated array can be: "001", "01", "11". When the pivot point is 0, the index of 1 just 1 step behind that pivot. If pivot point is 1, then that is the 1 we are finding!\\
+\textbf{d.\\} 
+\begin{enumerate}
+    \item[1] $i = 0$
+    \item[2] \textbf{for} $i = n, n - \sqrt{n}, n - 2\sqrt{n}$,... until $\sqrt{n}$
+    \item[3] \quad \quad \textbf{if} $A[i] = 0$, $i = i + \sqrt{n}$
+    \item[4] \quad \quad \textbf{else}: $i = i - \sqrt{n}$
+    \item[5] \textbf{if} $i = 0$, $i = i + \sqrt{n}$
+    \item[6] \textbf{for} $i = i$ \textbf{downto} $i - \sqrt{n} + 1$
+    \item[7] \quad \quad \textbf{if} $A[i] = 0$, return $i = i + 1$
+    \item[8] \quad \quad \textbf{else}: $i = i - 1$
+    \item[9] \textbf{if} $i = i - \sqrt{n}$, $i = i + 1$
+\end{enumerate}
+We have only two chance to test 0. We used 2 for loops to check 1's. which worst case is $O(\sqrt{n})$. By dividing $A[1,2,...n]$ to $\sqrt{n}$ parts, and find the right part to check every elements in that sub-array.
+\textbf{\\e.\\} 
+\begin{enumerate}
+    \item[1] $i = 0$
+    \item[2] \textbf{for} $i = n, n - n^{\frac{k-1}{k}}, n - 2n^{\frac{k-1}{k}}$,... until $n^{\frac{k-1}{k}}$
+    \item[3] \quad \quad \textbf{if} $A[i] = 0$, $i = i + n^{{\frac{k-1}{k}}}$
+    \item[4] \quad \quad \textbf{else}: $i = i - n^{\frac{k-1}{k}}$
+    \item[5] \textbf{if} $i = 0$, $i = i + n^{\frac{k-1}{k}}$
+    \item[6] \textbf{for} $i = i, i - n^{\frac{k-2}{k}}, i - 2n^{\frac{k-2}{k}}$ until $n^{\frac{k-2}{k}}$
+    \item[7] \quad \quad \textbf{if} $A[i] = 0$, $i = i + n^{{\frac{k-2}{k}}}$
+    \item[8] \quad \quad \textbf{else}: $i = i - n^{{\frac{k-2}{k}}}$
+    \item[9] \textbf{if} $i = i - n^{{\frac{k-2}{k}}}$, $i = i + n^{{\frac{k-2}{k}}}$
+    \item[{}] ...
+    \item[...] \textbf{for} $i = i$ \textbf{downto} $i - n^{\frac{1}{k}} + 1$
+    \item[...] \quad \quad \textbf{if} $A[i] = 0$, return $i = i + 1$
+    \item[...] \quad \quad \textbf{else}: $i = i - 1$
+    \item[...] \textbf{if} $i = i - n^{\frac{1}{k}}$, $i = i + 1$
+\end{enumerate}
+Similar idea just like part \textbf{d}. As we only have k possibilities  to check 0's, the difference is we divide $A$ to $n^{\frac{1}{k}}$ parts. After find the "right" part keep dividing it, until the length of it is $n^{\frac{1}{k}}$.
+\end{document}
